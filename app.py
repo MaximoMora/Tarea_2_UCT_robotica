@@ -18,7 +18,8 @@ from pygame.locals import *
 # Definicion de Constantes Globales
 #---------------------------------------------------------------------
 nRES = (960,640); nTW_X = nTH_Y = 32 ; nMx = nMy = 0 ; lOK = True 
-
+eMap_1_X = 567; eMap_1_Y = 300 #Variables por defectos del mapa 1
+eMap_1_X_Max = 3840; eMap_1_Y_Max = 1920 #X e Y maxima de mapa 1
 #---------------------------------------------------------------------
 # Definicion de Structura
 #---------------------------------------------------------------------
@@ -158,7 +159,7 @@ def Pinta_Panta():
 # Pinta Mapas
 #---------------------------------------------------------------------
 def Pinta_Mapas():
-    sPanta.blit(sMap_1.subsurface((nXd,0,597,304)),(357,5))
+    sPanta.blit(sMap_1.subsurface((nXd,0,597,650)),(357,5)) # 0, 0 597, 900 | 357, 5
     sPanta.blit(sMap_2.subsurface((0,0,345,393)),(5,241))
     sPanta.blit(sMap_3.subsurface((0,0,597,319)),(357,315))
     return
@@ -168,10 +169,6 @@ def Pinta_Mapas():
 def Pinta_Minimapa():
 
     sPanta.blit(aSprt[12],(780,320))
-    sPanta.blit(aSprt[13],(345,393))
-    sPanta.blit(aSprt[13],(567,319))
-    #sPanta.blit(aSprt[12],(780,15))
-    #sPanta.blit(aSprt[12],(175,250))
 
 
 def Zoom_Minimapa():
@@ -181,10 +178,12 @@ def Zoom_Minimapa():
         if nMy in range(320,442):
             for eZoom in ev:
                 if eZoom.type == PG.MOUSEBUTTONDOWN and e.button == 1:
-                    print ("click")
+                    print nMx, nMy
+                    nx = (1920 / 170)
+                    ny = (1920 / 120)
 
 
-    return  nx,ny
+    return nx, ny
 
 
 
@@ -257,7 +256,10 @@ while lOK:
  for e in ev:
   print(e)
   if e.type == QUIT           : lOK = False
-  if e.type == PG.MOUSEMOTION : nMx,nMy = e.pos  
+  if e.type == PG.MOUSEMOTION : nMx,nMy = e.pos
+  if e.type == PG.MOUSEBUTTONDOWN and e.button == 1:
+      print ("click")
+
   
  Pinta_Panta()
  Pinta_Mapas()
