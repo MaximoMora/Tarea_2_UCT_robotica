@@ -4,12 +4,12 @@
 # Pontificia Universidad Catolica de Chile
 # Programacion de Robot -> INFO1139
 #---------------------------------------------------------------------
-#__________      ___.           __  .__               
-#\______   \ ____\_ |__   _____/  |_|__| ____ _____   
-# |       _//  _ \| __ \ /  _ \   __\  |/ ___\\__  \  
+#__________      ___.           __  .__
+#\______   \ ____\_ |__   _____/  |_|__| ____ _____
+# |       _//  _ \| __ \ /  _ \   __\  |/ ___\\__  \
 # |    |   (  <_> ) \_\ (  <_> )  | |  \  \___ / __ \_
 # |____|_  /\____/|___  /\____/|__| |__|\___  >____  /
-#        \/           \/                    \/     \/ 
+#        \/           \/                    \/     \/
 #---------------------------------------------------------------------
 import pygame as PG, time as Ti, random as RA, ctypes as ct
 from pygame.locals import *
@@ -17,9 +17,8 @@ from pygame.locals import *
 #---------------------------------------------------------------------
 # Definicion de Constantes Globales
 #---------------------------------------------------------------------
-nRES = (960,640); nTW_X = nTH_Y = 32 ; nMx = nMy = 0 ; lOK = True 
-eMap_1_X = 567; eMap_1_Y = 300 #Variables por defectos del mapa 1
-eMap_1_X_Max = 3840; eMap_1_Y_Max = 1920 #X e Y maxima de mapa 1
+nRES = (960,640); nTW_X = nTH_Y = 32 ; nMx = nMy = 0 ; lOK = True
+
 #---------------------------------------------------------------------
 # Definicion de Structura
 #---------------------------------------------------------------------
@@ -52,9 +51,9 @@ def Load_Image(sFile,transp = False):
 #---------------------------------------------------------------------
 def PyGame_Init():
     PG.init()
-    PG.mouse.set_visible(False) 
+    PG.mouse.set_visible(False)
     PG.display.set_caption('Dynamic Big Map 2D - By Alberto Caro')
-    return PG.display.set_mode(nRES) 
+    return PG.display.set_mode(nRES)
 
 #---------------------------------------------------------------------
 # Inicilaiza parametros de los Robots
@@ -75,13 +74,13 @@ def Pinta_Robots():
 #---------------------------------------------------------------------
 def Mueve_Robots():
     return
-    
+
 #---------------------------------------------------------------------
 # Inicializa las Baldozas = Tiles del Super Extra Mega Mapa.-
 #---------------------------------------------------------------------
-def Get_Tiles(nMW_X,nMH_Y,tRng):      
+def Get_Tiles(nMW_X,nMH_Y,tRng):
     return [[ RA.randint(tRng[0],tRng[1]) for i in range(0,nMW_X/nTW_X)] for i in range(0,nMH_Y/nTH_Y)]
- 
+
 #---------------------------------------------------------------------
 # Inicializa Superficie del Super Extra Mega Mapa.-
 #---------------------------------------------------------------------
@@ -96,45 +95,42 @@ def Img_Init():
     aImg.append(Load_Image('T00.png',False )) # Tierra
     aImg.append(Load_Image('T01.png',False )) # Tierra + Piedras
     aImg.append(Load_Image('T02.png',False )) # Rocas
-    aImg.append(Load_Image('T03.png',False )) # Marmol Celeste    
+    aImg.append(Load_Image('T03.png',False )) # Marmol Celeste
     aImg.append(Load_Image('T04.png',False )) # Marmol Star Yellow
     aImg.append(Load_Image('T05.png',False )) # Marmol Star Blue
     aImg.append(Load_Image('T06.png',False )) # Marmol Star Red
     aImg.append(Load_Image('T07.png',False )) # Marmol Gris Claro
     aImg.append(Load_Image('T08.png',False )) # Marmol Cafe
     aImg.append(Load_Image('T09.png',True  )) # Mouse
-    aImg.append(Load_Image('bkg.png',False )) # Bkg - 10
-    aImg.append(Load_Image('video.png',False )) # Video - 11
-    aImg.append(Load_Image('mm.png',False)) #Mini Mapa - 12
-    aImg.append(Load_Image('fuaa.png',False)) # bandera -13
+    aImg.append(Load_Image('bkg.png',False )) # Bkg
+    aImg.append(Load_Image('video.png',False )) # Video
+    aImg.append(Load_Image("mm.png",False)) #MiniMapa
     return aImg
 
 #---------------------------------------------------------------------
-# Make Mapa 
+# Make Mapa
 #---------------------------------------------------------------------
 def Make_Mapa(sMem,aTiles,tCF):
     nPx = nPy = 0
     for f in range(0,tCF[1]/nTH_Y):
-     print(f)
      for c in range(0,tCF[0]/nTW_X):
-      print (c)
-      if aTiles[f][c] == 0: 
+      if aTiles[f][c] == 0:
          sMem.blit(aSprt[0],(nPx,nPy)); nPx += nTW_X
-      if aTiles[f][c] == 1: 
+      if aTiles[f][c] == 1:
          sMem.blit(aSprt[1],(nPx,nPy)); nPx += nTW_X
-      if aTiles[f][c] == 2: 
+      if aTiles[f][c] == 2:
          sMem.blit(aSprt[2],(nPx,nPy)); nPx += nTW_X
-      if aTiles[f][c] == 3: 
+      if aTiles[f][c] == 3:
          sMem.blit(aSprt[3],(nPx,nPy)); nPx += nTW_X
-      if aTiles[f][c] == 4: 
+      if aTiles[f][c] == 4:
          sMem.blit(aSprt[4],(nPx,nPy)); nPx += nTW_X
-      if aTiles[f][c] == 5: 
+      if aTiles[f][c] == 5:
          sMem.blit(aSprt[5],(nPx,nPy)); nPx += nTW_X
-      if aTiles[f][c] == 6: 
+      if aTiles[f][c] == 6:
          sMem.blit(aSprt[6],(nPx,nPy)); nPx += nTW_X
-      if aTiles[f][c] == 7: 
+      if aTiles[f][c] == 7:
          sMem.blit(aSprt[7],(nPx,nPy)); nPx += nTW_X
-      if aTiles[f][c] == 8: 
+      if aTiles[f][c] == 8:
          sMem.blit(aSprt[8],(nPx,nPy)); nPx += nTW_X
      nPx = 0; nPy += nTH_Y
     return
@@ -144,48 +140,61 @@ def Make_Mapa(sMem,aTiles,tCF):
 #---------------------------------------------------------------------
 def Pinta_Mouse():
     sPanta.blit(aSprt[9],(nMx,nMy))
-    return 
+    return
 
 #---------------------------------------------------------------------
 # Pinta Display Main
 #---------------------------------------------------------------------
 def Pinta_Panta():
-    sPanta.blit(aSprt[10],(5,5))
+    sPanta.blit(aSprt[10],(0,0))
     sPanta.blit(aSprt[11],(5,5))
-    return 
-
+    return
 
 #---------------------------------------------------------------------
 # Pinta Mapas
 #---------------------------------------------------------------------
 def Pinta_Mapas():
-    sPanta.blit(sMap_1.subsurface((nXd,0,597,650)),(357,5)) # 0, 0 597, 900 | 357, 5
-    sPanta.blit(sMap_2.subsurface((0,0,345,393)),(5,241))
-    sPanta.blit(sMap_3.subsurface((0,0,597,319)),(357,315))
+    sPanta.blit(sMap_1.subsurface((nXd[0],nYd[0],598,304)),(357,5))
+    sPanta.blit(sMap_2.subsurface((nXd[1],nYd[1],345,393)),(5,241))
+    sPanta.blit(sMap_3.subsurface((nXd[2],nXd[2],597,319)),(357,315))
     return
 
-#MAPA PEQUENOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-
 def Pinta_Minimapa():
+    sPanta.blit(aSprt[12],(783,7)) #Mapa 1
+    sPanta.blit(aSprt[12],(180,242)) #Mapa 2
+    sPanta.blit(aSprt[12],(785,315))
 
-    sPanta.blit(aSprt[12],(780,320))
+def Zoom_Mapa_1(nMx,nMy):
+    if nMx in range(783,963):
+        if nMy in range(7,129):
+            eMap1_X = 0
+            eMap1_y = 0
+        if eMap1_X <= 598:
+            eMap1_X=(3840/170)*nMx
+        elif eMap1_X > 598:
+            eMap1_X = 3840 - 598
 
+        if  eMap1_y >= 304:
+            eMap1_Y=(1920/122)*nMy
+        else:
+            eMap1_Y= 1920 - 304
 
-def Zoom_Minimapa():
-    nx = 0
-    ny = 0
-    if nMx in range(780,950):
-        if nMy in range(320,442):
-            for eZoom in ev:
-                if eZoom.type == PG.MOUSEBUTTONDOWN and e.button == 1:
-                    print nMx, nMy
-                    nx = (1920 / 170)
-                    ny = (1920 / 120)
+        return eMap1_X,eMap1_Y
 
+def Zoom_Mapa_3(nMx,nMy):
+    eMap2_X = 0
+    eMap2_Y = 0
+    if eMap2_X <= 597:
+        eMap2_X =(1920/170)*nMx
+    else:
+        eMap2_X=1920-597
 
-    return nx, ny
-
-
+    if eMap2_Y >= 319:
+        eMap2_Y =(1920/120)*nMy
+    else:
+        eMap2_Y = 1920-319
+    print eMap2_X, eMap2_Y
+    return  eMap2_X,eMap2_Y
 
 
 #---------------------------------------------------------------------
@@ -218,62 +227,55 @@ def Mueve(cKey):
     if cKey == 'I':
        nXd -= 1
        if nXd <= 0: nXd = 0
-    return     
+    return
 
 #---------------------------------------------------------------------
 # While Principal del Demo.-
 #---------------------------------------------------------------------
-    
+
 # Display Main
-sPanta = PyGame_Init(); 
+sPanta = PyGame_Init();
 
 # Tiles/Sprites
-aSprt = Img_Init() 
+aSprt = Img_Init()
 
 # Mapas....
-sInfo  = Get_Surface(0345,0230); 
-sMap_1 = Get_Surface(3840,1920); 
-sMap_2 = Get_Surface(1920,3200); 
-sMap_3 = Get_Surface(1920,1920); 
+sInfo  = Get_Surface(0345,0230);
+sMap_1 = Get_Surface(3840,1920);
+sMap_2 = Get_Surface(1920,3200);
+sMap_3 = Get_Surface(1920,1920);
 
-aMapTi_1 = Get_Tiles(3840,1920,(0,2)); Make_Mapa(sMap_1,aMapTi_1,(3840,1920)) 
-aMapTi_2 = Get_Tiles(1920,3200,(3,5)); Make_Mapa(sMap_2,aMapTi_2,(1920,3200)) 
-aMapTi_3 = Get_Tiles(1920,1920,(6,8)); Make_Mapa(sMap_3,aMapTi_3,(1920,1920)) 
+aMapTi_1 = Get_Tiles(3840,1920,(0,2)); Make_Mapa(sMap_1,aMapTi_1,(3840,1920))
+aMapTi_2 = Get_Tiles(1920,3200,(3,5)); Make_Mapa(sMap_2,aMapTi_2,(1920,3200))
+aMapTi_3 = Get_Tiles(1920,1920,(6,8)); Make_Mapa(sMap_3,aMapTi_3,(1920,1920))
 
 aClk = [PG.time.Clock(),PG.time.Clock()] # Init Array de Cloks
 
-nXd = nYd = 0
+nXd = nYd = [0,0,0]
 
 while lOK:
  cKey = PG.key.get_pressed()
  if cKey[PG.K_ESCAPE] : lOK = False
- if cKey[PG.K_p]      : Pausa() 
- if cKey[PG.K_c]      : PG.image.save(sPanta,'foto.png') 
+ if cKey[PG.K_p]      : Pausa()
+ if cKey[PG.K_c]      : PG.image.save(sPanta,'foto.png')
  if cKey[PG.K_a]      : Mueve('D')
  if cKey[PG.K_s]      : Mueve('I')
 
  ev = PG.event.get()
- for e in ev:
-  print(e)
-  if e.type == QUIT           : lOK = False
-  if e.type == PG.MOUSEMOTION : nMx,nMy = e.pos
-  if e.type == PG.MOUSEBUTTONDOWN and e.button == 1:
-      print ("click")
 
-  
+ for e in ev:
+  if e.type == QUIT: lOK = False
+  nMx, nMy = PG.mouse.get_pos()
+  clicks = PG.mouse.get_pressed()
+  if PG.mouse.get_pressed()[0]:
+      nXd[0],nYd[0] = Zoom_Mapa_1(nMx,nMy)
+
  Pinta_Panta()
  Pinta_Mapas()
  Pinta_Minimapa()
- Zoom_Minimapa()
  Pinta_Regla()
  Pinta_Mouse()
  PG.display.flip()
  aClk[0].tick(100)
 
 PG.quit
-
-
-
-
-
-
